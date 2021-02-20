@@ -29,16 +29,10 @@ const ComponentA = () => {
     const reset = () => {
         setCount(0);
     }
-    return (
-        <div>
-            <h1>componentA</h1>
-            <Link to="componentb">Go to componentB</Link>
-            
-            <div><button onClick={up}>up</button></div>
-            <div><button onClick={down}>down</button></div>
-            <div><button onClick={reset}>reset</button></div>
-            <div><button onClick={start}>go</button></div>
-            
+
+    const start = () => {
+        return (
+            <div>
             <Table striped bordered hover  >
             <thead>
               <tr>
@@ -61,14 +55,29 @@ const ComponentA = () => {
                 })}
             </tbody>
           </Table>
+          </div>
+
+
+
+        )
+    
+  
+    }
+    return (
+        <div>
+            <h1>componentA</h1>
+            <Link to="componentb">Go to componentB</Link>
+            
+            <div><button onClick={up}>up</button></div>
+            <div><button onClick={down}>down</button></div>
+            <div><button onClick={reset}>reset</button></div>
+            <div><button onClick={start}>go</button></div>
+            
+            
         </div>
     )
 }
 
-const start = () => {
-  
-    
-  
-}
+
 
 export default ComponentA
