@@ -10,11 +10,7 @@ const ComponentC = () => {
 
     useEffect(() => {
         console.log('useEffect が呼び出されました。');
-        axios.get("https://jsonplaceholder.typicode.com/posts")
-        .then(res => {
-            console.log(res, 'res check')
-            setData(res.data)
-        })
+        
     }, []);
 
     const up = () => {
@@ -30,20 +26,14 @@ const ComponentC = () => {
     }
 
     const start = () => {
-        {data.map(u => {
-            return(
-
-                    <tr key={"a"}>
-                      <td>{u.userId}</td>
-                      <td>{u.id}</td>
-                      <td>{u.title}</td>
-                      <td>{u.body}</td>
-                    </tr> 
-                    
-        )
-
-        })}
-    
+        axios.get("https://jsonplaceholder.typicode.com/posts")
+        .then(res => {
+            setData(res.data)
+        })
+        
+        
+        
+        
     }
     return (
         <div>
@@ -66,7 +56,18 @@ const ComponentC = () => {
               </tr>
             </thead>
             <tbody>
+            {data.map(u => {
+            return(
 
+                    <tr key={u.id}>
+                      <td>{u.userId}</td>
+                      <td>{u.id}</td>
+                      <td>{u.title}</td>
+                      <td>{u.body}</td>
+                    </tr> 
+                    
+        )
+        })}
             </tbody>
           </Table>
           </div>
