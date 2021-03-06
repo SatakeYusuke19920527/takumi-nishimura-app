@@ -1,78 +1,59 @@
-import React, { useState, useEffect, Button,} from 'react'
+import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom'
-import { Table } from 'react-bootstrap'
-import axios from 'axios'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import reducer from '../reducers/index'
+
+const initialCount = {
+    count: 0
+}
 
 const ComponentC = () => {
-    const [ count, setCount ] = useState(0);
-    const [data, setData] = useState([])  
+    const [ state, dispatch ] = useReducer(reducer,initialCount);
 
-    useEffect(() => {
-        console.log('useEffect が呼び出されました。');
-        
-    }, []);
+    const increment = () => {
+        console.log('increment');
+        dispatch({type: 'INCREMENT'
+    })
+}
 
-    const up = () => {
-        setCount(count + 1);
-    }
-
-    const down = () => {
-        setCount(count - 1);
+    const decrement = () => {
+        console.log('decrement');
+        dispatch({type: 'DECREMENT'
+    })
     }
 
     const reset = () => {
-        setCount(0);
+        console.log('reset');
+        dispatch({type: 'RESET'
+    })
     }
 
-    const start = () => {
-        axios.get("https://jsonplaceholder.typicode.com/posts")
-        .then(res => {
-            setData(res.data)
+    const sanbai = () => {
+        console.log('3*');
+        dispatch({type: 'SANBAI'
+    })
+    }
+
+    const sanbaitas = () => {
+        if( state.count === 0 ){
+        console.log('3* + 100');
+        dispatch({type: 'SANBAITAS'
         })
-        
-        
-        
-        
-    }
-    return (
-        <div>
-            <h1>componentC</h1>
-            <Link to="componentb">Go to componentB</Link>
-            
-            <div><button onClick={up}>up</button></div>
-            <div><button onClick={down}>down</button></div>
-            <div><button onClick={reset}>reset</button></div>
-            <div><button onClick={start}>go</button></div>
-            
-            <div>
-            <Table striped bordered hover  >
-            <thead>
-              <tr>
-                <th>userID</th>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Body</th>
-              </tr>
-            </thead>
-            <tbody>
-            {data.map(u => {
-            return(
+    }}
 
-                    <tr key={u.id}>
-                      <td>{u.userId}</td>
-                      <td>{u.id}</td>
-                      <td>{u.title}</td>
-                      <td>{u.body}</td>
-                    </tr> 
-                    
-        )
-        })}
-            </tbody>
-          </Table>
-          </div>
-        </div>
-    )
+
+return (
+    <div>
+        <div>ComponentC</div>
+        <Link to="/">ComponentAへ移動</Link>
+
+        <button onClick={increment}>+</button>
+        <button onClick={decrement}>-</button>
+        <button onClick={reset}>Reset</button>
+        <button onClick={sanbai}>3*</button>
+        <button onClick={sanbaitas}>3* + 100</button>
+        <h1>{state.count}</h1>
+    </div>
+)
+
 }
-
 export default ComponentC
