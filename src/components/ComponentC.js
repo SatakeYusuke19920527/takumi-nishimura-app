@@ -34,11 +34,10 @@ const ComponentC = () => {
     }
 
     const sanbaitas = () => {
-        if( state.count === 0 ){
         console.log('3* + 100');
         dispatch({type: 'SANBAITAS'
         })
-    }}
+    }
 
 
 return (

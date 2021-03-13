@@ -1,46 +1,58 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Table } from 'react-bootstrap'
+import React, { useReducer, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ADD_EVENT } from '../actions/index';
+import reducer from '../reducers/index';
+import { Button, Form, ModalTitle, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ComponentA = () => {
-    return (
-        <div>
-            <h1>componentB</h1>
-            <Link to="">Go to componentA</Link>
-            <Link to="componentc">Go to componentC</Link>  
+const ComponentB = () => {
+        const [ state, dipatch ] = useReducer(reducer, [])
+        const[ title, setTitle] = useState('')
+        const[ body, setBody] = useState('')
 
-            <Table striped bordered hover>
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Username</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td colSpan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</Table>
-        </div>
-    )
+        const handleClick = (e) => {
+          e.preventDefault();
+          dipatch({
+            type: ADD_EVENT,
+            title,
+            body
+          });
+          setTitle('');
+          setBody('');
+        }
+        return (
+          <div>
+            <div>ComponentB</div>
+            <Link to="componentc">ComponentCへ移動</Link>
+
+            <Form>
+              <Form.Group controlId="formBasicPassword">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                type="text"
+                placeholder="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                />
+                <Form.Label>Body</Form.Label>
+                <Form.Control
+                type="text"
+                placeholder="body"
+                value={body}
+                onChange={(e) => setBody(e.target.value)}
+                />
+              </Form.Group>
+              <Button variant="primary" onClick={handleClick}>
+              イベント作成
+
+              </Button>
+              <Button variant="danger" onClick={handleClick}>
+              イベント全削除
+
+              </Button>
+            </Form>
+          </div>
+        )
 }
 
-export default ComponentA
+export default ComponentB
