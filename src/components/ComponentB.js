@@ -15,7 +15,7 @@ const ComponentB = () => {
           dipatch({
             type: ADD_EVENT,
             title,
-            body
+            body,
           });
           setTitle('');
           setBody('');
@@ -51,6 +51,30 @@ const ComponentB = () => {
 
               </Button>
             </Form>
+
+            <h1>Table</h1>
+            <Table striped bordered hover>
+              <thead>
+                <th>id</th>
+                <th>title</th>
+                <th>body</th>
+                <th>#</th>
+              </thead>
+              <tbody>
+                {state.map((data, index) => {
+                  return(
+                    <tr key={index}>
+                      <td>{data.id}</td>
+                      <td>{data.title}</td>
+                      <td>{data.body}</td>
+                      <td>
+                        <Button variant="danger">delete</Button>
+                      </td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </Table>
           </div>
         )
 }
