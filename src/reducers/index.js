@@ -14,10 +14,7 @@ const reducer = (state = [], action) => {
             return { ...state, count: state.count % 3 }; */  
         case ADD_EVENT:
             const event = { title: action.title, body: action.body }
-            console.log(state.length, 'debug')
-            console.log(state.langth + 1, 'debug.state')
-            const id = state.langth + 1
-            console.log(id, 'debug2')
+            let id = state.length + 1
             return [ ...state, {id, ...event } ];
             default:
                 return state;
