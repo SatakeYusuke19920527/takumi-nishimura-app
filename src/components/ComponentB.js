@@ -20,6 +20,13 @@ const ComponentB = () => {
           setTitle('');
           setBody('');
         }
+        const handleClickone = (e) => {
+          e.preventDefault();
+          dipatch({
+            type: ADD_EVENT,
+          });
+
+        }
         return (
           <div>
             <div>ComponentB</div>
@@ -46,7 +53,7 @@ const ComponentB = () => {
               イベント作成
 
               </Button>
-              <Button variant="danger" onClick={handleClick}>
+              <Button variant="danger" onClick={handleClickone}>
               イベント全削除
 
               </Button>

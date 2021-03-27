@@ -16,6 +16,9 @@ const reducer = (state = [], action) => {
             const event = { title: action.title, body: action.body }
             let id = state.length + 1
             return [ ...state, {id, ...event } ];
+        /*case ALLDELETE_EVENT
+            let id = state.length = 1
+            return [ ...state, {id}]*/
             default:
                 return state;
     }
