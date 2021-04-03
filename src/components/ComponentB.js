@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ADD_EVENT } from '../actions/index';
+import { ADD_EVENT, ALLDELETE_EVENT, DELETE_EVENT } from '../actions/index';
 import reducer from '../reducers/index';
 import { Button, Form, ModalTitle, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -9,6 +9,7 @@ const ComponentB = () => {
         const [ state, dipatch ] = useReducer(reducer, [])
         const[ title, setTitle] = useState('')
         const[ body, setBody] = useState('')
+        const[ comment, setComment] = useState('')
 
         const handleClick = (e) => {
           e.preventDefault();
@@ -16,16 +17,24 @@ const ComponentB = () => {
             type: ADD_EVENT,
             title,
             body,
+            comment
           });
           setTitle('');
           setBody('');
+          setComment('');
         }
         const handleClickone = (e) => {
           e.preventDefault();
           dipatch({
-            type: ADD_EVENT,
-          });
-
+            type: ALLDELETE_EVENT,
+          });}
+        
+        const handleClicktwo = (e) => {
+            e.preventDefault();
+            dipatch({
+              type: DELETE_EVENT,
+            });
+        
         }
         return (
           <div>
@@ -48,6 +57,13 @@ const ComponentB = () => {
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 />
+                <Form.Label>Comment</Form.Label>
+                <Form.Control
+                type="text"
+                placeholder="comment"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                />
               </Form.Group>
               <Button variant="primary" onClick={handleClick}>
               イベント作成
@@ -65,6 +81,7 @@ const ComponentB = () => {
                 <th>id</th>
                 <th>title</th>
                 <th>body</th>
+                <th>comment</th>
                 <th>#</th>
               </thead>
               <tbody>
@@ -74,8 +91,9 @@ const ComponentB = () => {
                       <td>{data.id}</td>
                       <td>{data.title}</td>
                       <td>{data.body}</td>
+                      <td>{data.comment}</td>
                       <td>
-                        <Button variant="danger">delete</Button>
+                        <Button variant="danger" onClick={handleClicktwo}>delete</Button>
                       </td>
                     </tr>
                   )
