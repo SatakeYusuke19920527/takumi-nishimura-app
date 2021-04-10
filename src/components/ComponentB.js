@@ -10,6 +10,7 @@ const ComponentB = () => {
         const[ title, setTitle] = useState('')
         const[ body, setBody] = useState('')
         const[ comment, setComment] = useState('')
+        
 
         const handleClick = (e) => {
           e.preventDefault();
@@ -29,13 +30,9 @@ const ComponentB = () => {
             type: ALLDELETE_EVENT,
           });}
         
-        const handleClicktwo = (e) => {
-            e.preventDefault();
-            dipatch({
-              type: DELETE_EVENT,
-            });
         
-        }
+        
+        
         return (
           <div>
             <div>ComponentB</div>
@@ -86,6 +83,12 @@ const ComponentB = () => {
               </thead>
               <tbody>
                 {state.map((data, index) => {
+                  const handleClicktwo = (e) => {
+                    e.preventDefault();
+                    dipatch({
+                      type: DELETE_EVENT,
+                      id:data.id
+                    });}
                   return(
                     <tr key={index}>
                       <td>{data.id}</td>
