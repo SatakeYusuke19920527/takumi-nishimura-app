@@ -88,7 +88,8 @@ const ComponentB = () => {
                     dipatch({
                       type: DELETE_EVENT,
                       id:data.id
-                    });}
+                    });
+                  }
                   return(
                     <tr key={index}>
                       <td>{data.id}</td>

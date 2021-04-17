@@ -13,17 +13,17 @@ const reducer = (state = [], action) => {
         case SANBAITAS:
             return { ...state, count: state.count % 3 }; */  
         case ADD_EVENT:
-            const event = { title: action.title, body: action.body, comment: action.comment}
+            const event = { title: action.title, body: action.body, comment: action.comment,}
             let id = state.length + 1
             return [ ...state, {id, ...event } ];
-        case ALLDELETE_EVENT
-            :return []
+        case ALLDELETE_EVENT:
+            return []
             case DELETE_EVENT:
-                const idone = state.filter(id =>{
-                    return id === action.id
+                const idone = state.filter(data =>{
+                    return data.id != action.id
                 })
                 console.log(idone)
-            return state;
+            return idone;
             default:
                 return state;
     }
