@@ -1,6 +1,7 @@
 import React, { useReducer } from 'react'
 import { Link } from 'react-router-dom'
 import reducer from '../reducers/index'
+import ComponentD from './ComponentD'
 
 const initialCount = {
     count: 0
@@ -51,8 +52,10 @@ return (
         <button onClick={sanbai}>3*</button>
         <button onClick={sanbaitas}>3* + 100</button>
         <h1>{state.count}</h1>
+        <ComponentD />
     </div>
 )
 
 }
 export default ComponentC
+

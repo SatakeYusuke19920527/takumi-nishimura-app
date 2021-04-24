@@ -4,6 +4,7 @@ import { ADD_EVENT, ALLDELETE_EVENT, DELETE_EVENT } from '../actions/index';
 import reducer from '../reducers/index';
 import { Button, Form, ModalTitle, Table } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ComponentF from './ComponentF'
 
 const ComponentB = () => {
         const [ state, dipatch ] = useReducer(reducer, [])
@@ -104,6 +105,7 @@ const ComponentB = () => {
                 })}
               </tbody>
             </Table>
+            <ComponentF />
           </div>
         )
 }
