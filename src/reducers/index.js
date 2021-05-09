@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, RESET, ADD_EVENT,DELETE_EVENT,ALLDELETE_EVENT } from '../actions/index';
+import { INCREMENT, DECREMENT, RESET, ADD_EVENT,DELETE_EVENT,ALLDELETE_EVENT,SANBAI,SANBAITAS } from '../actions/index';
 
 const reducer = (state = [], action) => {
     switch (action.type) {
@@ -8,10 +8,10 @@ const reducer = (state = [], action) => {
             return { ...state, count: state.count - 1 };
         case RESET:
             return { ...state, count: state.count = 0 };
-       /* case SANBAI:
+        case SANBAI:
             return { ...state, count: state.count * 3 };
         case SANBAITAS:
-            return { ...state, count: state.count % 3 }; */  
+            return { ...state, count: state.count % 3 }; 
         case ADD_EVENT:
             const event = { title: action.title, body: action.body, comment: action.comment,}
             let id = state.length + 1
