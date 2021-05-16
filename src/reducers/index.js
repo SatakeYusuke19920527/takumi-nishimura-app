@@ -11,7 +11,17 @@ const reducer = (state = [], action) => {
         case SANBAI:
             return { ...state, count: state.count * 3 };
         case SANBAITAS:
-            return { ...state, count: state.count % 3 }; 
+            if (state.count !== 0 ) {
+                if (state.count % 3 === 0) {
+                console.log(action, 'check')
+            return { ...state, count: state.count + 10 }
+            } else {
+                return { ...state, count: state.count + 0 }
+            }
+            } else {
+                return { ...state, count: state.count + 0 }
+            }
+            
         case ADD_EVENT:
             const event = { title: action.title, body: action.body, comment: action.comment,}
             let id = state.length + 1

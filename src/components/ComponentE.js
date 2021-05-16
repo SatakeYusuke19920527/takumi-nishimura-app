@@ -8,11 +8,11 @@ const ComponentE = () => {
       type: INCREMENT
     })
   }
-   const handleClickone = () => {
+  const handleClickone = () => {
     setGlobalState({
       type: DECREMENT
     })
-   }
+  }
   const handleClicktwo = () => {
     setGlobalState({
       type: RESET
@@ -25,7 +25,7 @@ const ComponentE = () => {
   }
   const handleClickfour = () => {
     
-      setGlobalState({
+    setGlobalState({
       type: SANBAITAS
     })
     
@@ -40,9 +40,12 @@ const ComponentE = () => {
       <button onClick={handleClicktwo}>RESET</button>
       <button onClick={handleClickthree}>3*</button>
       <button onClick={handleClickfour}>3*+10</button>
+      <h1>{globalState.count}</h1>
       
-   </div>
- )  
+    </div>
+  )
+
+
 }
 
 export default ComponentE
