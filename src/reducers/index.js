@@ -1,4 +1,5 @@
-import { INCREMENT, DECREMENT, RESET, ADD_EVENT,DELETE_EVENT,ALLDELETE_EVENT,SANBAI,SANBAITAS } from '../actions/index';
+import { INCREMENT, DECREMENT, RESET, ADD_EVENT, DELETE_EVENT, ALLDELETE_EVENT, SANBAI, SANBAITAS, AGLOBAL } from '../actions/index';
+
 
 const reducer = (state = [], action) => {
     switch (action.type) {
@@ -32,8 +33,11 @@ const reducer = (state = [], action) => {
                 const idone = state.filter(data =>{
                     return data.id != action.id
                 })
-                console.log(idone)
+                console .log(idone)
             return idone;
+        case AGLOBAL:
+            console.log(action.data,"======================")
+            return []
             default:
                 return state;
     }
