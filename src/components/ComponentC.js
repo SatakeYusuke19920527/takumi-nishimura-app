@@ -1,14 +1,37 @@
-import React, { useReducer } from 'react'
+import React, { useReducer, useEffect, useContext,useState } from 'react'
+import axios from 'axios'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom'
 import reducer from '../reducers/index'
 import ComponentD from './ComponentD'
+import { Store } from '../store/index'
+import { AGLOBAL } from '../actions/index'
+
 
 const initialCount = {
     count: 0
 }
 
 const ComponentC = () => {
-    const [ state, dispatch ] = useReducer(reducer,initialCount);
+    const [state, dispatch] = useReducer(reducer, initialCount);
+    const { globalState, setGlobalState } = useContext(Store);
+    const [data, setData] = useState([])  
+
+
+    useEffect(() => {
+        console.log('useEffect が呼び出されました。');
+
+        axios.get("https://jsonplaceholder.typicode.com/todos")
+        .then(res => {
+            console.log(res, 'res check')
+            setData(res.data)
+            setGlobalState({
+                type: AGLOBAL,
+                data:res.data
+            })
+
+        })
+    }, []);
 
     const increment = () => {
         console.log('increment');

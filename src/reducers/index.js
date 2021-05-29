@@ -36,8 +36,7 @@ const reducer = (state = [], action) => {
                 console .log(idone)
             return idone;
         case AGLOBAL:
-            console.log(action.data,"======================")
-            return []
+            return { ...state, data: action.data };
             default:
                 return state;
     }

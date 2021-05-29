@@ -13,8 +13,12 @@ const ComponentA = () => {
 
     useEffect(() => {
         console.log('useEffect が呼び出されました。');
+        getData()
+        // eslint-disable-next-line 
+    }, []);
 
-        axios.get("https://jsonplaceholder.typicode.com/todos")
+    const getData = async () => {
+        await axios.get("https://jsonplaceholder.typicode.com/todos")
         .then(res => {
             console.log(res, 'res check')
             setData(res.data)
@@ -22,9 +26,8 @@ const ComponentA = () => {
                 type: AGLOBAL,
                 data:res.data
             })
-
         })
-    }, []);
+    }
 
     const up = () => {
         setCount(count + 1);
